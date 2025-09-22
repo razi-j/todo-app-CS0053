@@ -36,7 +36,8 @@ public class ToDoApp {
             System.out.println("2.Show Tasks");
             System.out.println("3.Remove Task");
             System.out.println("4 Exit");
-            int choice=s.nextInt(); // 
+            int choice=s.nextInt();
+            s.nextLine(); // added to consume leftover newline and to also allow adding tasks to finally function again
             if(choice==1){
                 System.out.println("Enter Task: "); 
                 String t=s.nextLine(); 
