@@ -2,7 +2,7 @@
 import java.util.*; 
 
 public class ToDoApp {
-    static ArrayList tasks = new ArrayList();
+    static ArrayList<String> tasks = new ArrayList<>(); // used generics for better stability
 
     public static void addtask(String t){
         tasks.add(t);
