@@ -36,29 +36,34 @@ def main():
         print("3. Remove Task")
         print("4. Exit")
         choice = input("Enter choice: ").strip()
-
-        if choice == "1":
-            t = input("Enter task: ").strip()
-            if t:
-                add_task(t)
+        try:
+            choice = int(choice)
+            if choice == 1:
+                t = input("Enter task: ").strip()
+                if t:
+                    add_task(t)
+                else:
+                    print("Task cannot be empty.\n")
+            elif choice == 2:
+                show_tasks()
+            elif choice == 3:
+                if not tasks:
+                    print("No tasks to remove.\n")
+                    continue
+                try:
+                    n = int(input("Enter task number to remove: "))
+                    d = str(input("Are you sure you want to remove task number " + str(n) + ". " + str(tasks[n-1]) + "? (y/n): "))
+                    remove_task(n) if d.lower() == "y" else print()
+                except ValueError:
+                    print("Please enter a valid number.\n")
+            elif choice == 4:
+                print("Goodbye!")
+                break
             else:
-                print("Task cannot be empty.\n")
-        elif choice == "2":
-            show_tasks()
-        elif choice == "3":
-            if not tasks:
-                print("No tasks to remove.\n")
-                continue
-            try:
-                n = int(input("Enter task number to remove: "))
-                remove_task(n)
-            except ValueError:
-                print("Please enter a valid number.\n")
-        elif choice == "4":
-            print("Goodbye!")
-            break
-        else:
-            print("Invalid choice. Please select 1-4.\n")
+                print("Invalid choice. Please select 1-4.\n")
+
+        except ValueError:
+            print("Invalid Input!\n")
 
 
 if __name__ == "__main__":
