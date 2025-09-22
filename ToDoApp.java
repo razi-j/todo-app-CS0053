@@ -14,9 +14,9 @@ public class ToDoApp {
             System.out.println("No tasks yet"); 
         }
         else {
-            for(int i=0;i<=tasks.size();i++){ 
-                System.out.println((i+1)+". "+tasks.get(i));
-            }
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println((i+1) + ". " + tasks.get(i)); // fixed because i goes up to tasks.size()
+            }                                                    // say goodbye to java.lang.IndexOutOfBoundsException
         }
     }
 
