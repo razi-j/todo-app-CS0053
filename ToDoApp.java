@@ -2,7 +2,7 @@
 import java.util.*; 
 
 public class ToDoApp {
-    static ArrayList tasks = new ArrayList();
+    static ArrayList<String> tasks = new ArrayList<>(); // used generics for better stability
 
     public static void addtask(String t){
         tasks.add(t);
@@ -14,16 +14,20 @@ public class ToDoApp {
             System.out.println("No tasks yet"); 
         }
         else {
-            for(int i=0;i<=tasks.size();i++){ 
-                System.out.println((i+1)+". "+tasks.get(i));
-            }
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println((i+1) + ". " + tasks.get(i)); // fixed because i goes up to tasks.size()
+            }                                                    // say goodbye to java.lang.IndexOutOfBoundsException
         }
     }
 
-    public static void removeTask(int n) {
-        tasks.remove(n); 
-        System.out.println("task removed"); 
+    public static void removeTask(int n) { // fixed this function because it array is 0 indexed while display is 1 indexed
+    if (n > 0 && n <= tasks.size()) {      // previously if user wants to remove task 1, it will remove task 2 because of the array indexing
+        tasks.remove(n - 1);
+        System.out.println("Task removed");
+    } else {
+        System.out.println("Invalid task number");
     }
+}
 
     public static void main(String args[]) {
         Scanner s=new Scanner(System.in);
@@ -32,7 +36,8 @@ public class ToDoApp {
             System.out.println("2.Show Tasks");
             System.out.println("3.Remove Task");
             System.out.println("4 Exit");
-            int choice=s.nextInt(); // 
+            int choice=s.nextInt();
+            s.nextLine(); // added to consume leftover newline and to also allow adding tasks to finally function again
             if(choice==1){
                 System.out.println("Enter Task: "); 
                 String t=s.nextLine(); 
@@ -42,7 +47,7 @@ public class ToDoApp {
             } else if(choice==3){
                 System.out.print("Enter task no to remove: ");
                 int n=s.nextInt(); 
-                removeTask(n); // <--
+                removeTask(n);
             } else if(choice==4){
                 break; 
             } else{
