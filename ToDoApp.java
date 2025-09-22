@@ -20,10 +20,14 @@ public class ToDoApp {
         }
     }
 
-    public static void removeTask(int n) {
-        tasks.remove(n); 
-        System.out.println("task removed"); 
+    public static void removeTask(int n) { // fixed this function because it array is 0 indexed while display is 1 indexed
+    if (n > 0 && n <= tasks.size()) {      // previously if user wants to remove task 1, it will remove task 2 because of the array indexing
+        tasks.remove(n - 1);
+        System.out.println("Task removed");
+    } else {
+        System.out.println("Invalid task number");
     }
+}
 
     public static void main(String args[]) {
         Scanner s=new Scanner(System.in);
@@ -42,7 +46,7 @@ public class ToDoApp {
             } else if(choice==3){
                 System.out.print("Enter task no to remove: ");
                 int n=s.nextInt(); 
-                removeTask(n); // <--
+                removeTask(n);
             } else if(choice==4){
                 break; 
             } else{
