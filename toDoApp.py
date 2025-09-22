@@ -2,51 +2,63 @@ tasks = []
 
 
 def add_task(task):
+    """Add a new task to the list."""
     tasks.append(task.strip())
-    print("task added!")
+    print("Task added!\n")
 
 
 def show_tasks():
+    """Display all current tasks."""
     if not tasks:
-        print("no tasks yet")
+        print("No tasks yet.\n")
     else:
-        for index, item in enumerate(tasks, start=1):
-            print(f"{index}. {item}")
+        print("\nYour Tasks:")
+        for i, task in enumerate(tasks, start=1):
+            print(f"{i}. {task}")
+        print()
 
 
 def remove_task(task_number):
+    """Remove a task by its number (1-based)."""
     if 1 <= task_number <= len(tasks):
-        tasks.pop(task_number - 1)
-        print("task removed!!")
+        removed = tasks.pop(task_number - 1)
+        print(f"Removed: {removed}\n")
     else:
-        print("Invalid task number.")
+        print("Invalid task number.\n")
 
 
 def main():
+    """Main menu loop."""
     while True:
+        print("------ To-Do App ------")
         print("1. Add Task")
         print("2. Show Tasks")
         print("3. Remove Task")
         print("4. Exit")
-        ch = input("enter choice : ").strip()
-        if ch == "1":
-            t = input("enter task : ").strip()
-            add_task(t)
-        elif ch == "2":
+        choice = input("Enter choice: ").strip()
+
+        if choice == "1":
+            t = input("Enter task: ").strip()
+            if t:
+                add_task(t)
+            else:
+                print("Task cannot be empty.\n")
+        elif choice == "2":
             show_tasks()
-        elif ch == "3":
+        elif choice == "3":
             if not tasks:
-                print("No tasks to remove.")
+                print("No tasks to remove.\n")
                 continue
             try:
-                n = int(input("enter task no to remove: "))
+                n = int(input("Enter task number to remove: "))
                 remove_task(n)
             except ValueError:
-                print("Please enter a valid number.")
-        elif ch == "4":
+                print("Please enter a valid number.\n")
+        elif choice == "4":
+            print("Goodbye!")
             break
         else:
-            print("wrong choice!!")
+            print("Invalid choice. Please select 1-4.\n")
 
 
 if __name__ == "__main__":
