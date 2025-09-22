@@ -10,8 +10,8 @@ def show_tasks():
     if not tasks:
         print("no tasks yet")
     else:
-        for i in range(len(tasks)):
-            print(i + 1, ".", tasks[i])
+        for index, item in enumerate(tasks, start=1):
+            print(f"{index}. {item}")
 
 
 def remove_task(task_number):
